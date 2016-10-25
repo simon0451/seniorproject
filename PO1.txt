@@ -1,0 +1,13 @@
+Sherline Lathe - http://sherline.com/product/4400-cnc4410-cnc-lathe/
+$880 +SH
+
+Stepper motors - https://www.pololu.com/product/1477
+$50 each +SH, order 2 (or 3 - extra for backup?)
+****Note - there are different voltages and currents for the NEMA 23s here.  I picked the lowest current one (highest voltage) with a holding torque comparable
+ to the Sherline OEM.  Specifically for ease of power transport without energy waste i.e. breadboarding, being able to use USB cables for motor control.  Are there any major concerns by doing this?
+
+Stepper motor driver chip - https://www.pololu.com/product/2970
+$20 each + SH, order 4 (including backups)
+This should replace a dual H-bridge with a pre-made solution, and is controlled just as easily by any microcontroller.
+
+I have a microcontroller we can start working with (Simon).
