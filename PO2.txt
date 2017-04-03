@@ -1,0 +1,36 @@
+Purchase order 2
+ECL
+
+Software for TURBOCAM computer at D1:
+1. The Arduino IDE - this is the software required to program the arduino.  It's free, open source, and can be downloaded from: https://www.arduino.cc/en/Main/Software
+2. VIM - This is a free, open source text editor for programming.  It can do a few things the Arduino IDE can't with regards to manipulating code.
+3. Git - This is a free, GNU Public License version control system.  This is extremely important for any coding project. And the version control works with non-code fiels as well. https://git-scm.com/downloads
+
+Measuring Tools (Have to go through a specific person - see if there are tools we can borrow first):
+Calipers - $76, http://www.mscdirect.com/product/details/01120955#reviews
+Dial indicator - $171 http://www.mscdirect.com/product/details/65378267
+Total Cost: $247
+
+Tools:
+9/64" - $3 McMaster Product Number: 5419A64
+Adjustable wrench - $18 McMaster Product Number: 5385A12
+Heat gun - $25 McMaster Product Number: 32605K33
+Total Cost:
+
+Lathe:
+Oil for ways and moving parts: ~$3, can be found on amazon, etc. http://www.3inone.com/products/telescoping-spout/
+
+Metals and Plastics:
+
+
+Cart:
+Uline model number H-3352, stainless steel double shelf cart. https://www.uline.com/BL_1882/Uline-Stainless-Steel-Carts
+Total Cost: $499
+
+Electronics:
+Arduino USB shield
+Female socket (for cables): ($1.88 each) http://www.digikey.com/product-detail/en/cui-inc/MD-40J/CP-2140-ND/96924
+Female socket (for box): ($1.83 each) http://www.digikey.com/product-detail/en/cui-inc/MD-40CV/CP-2840-ND/352861
+Male connectors: ($1.64 each) http://www.digikey.com/product-detail/en/cui-inc/MD-40/CP-2040-ND/96912
+Wire: ($21 - order 21 feet) https://www.inventables.com/technologies/stepper-motor-cable
+Heat shrink tubing - $15 http://www.digikey.com/product-detail/en/panduit-corp/HSTT-YK1/HSTT-YK1-ND/317576

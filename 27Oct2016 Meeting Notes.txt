@@ -1,0 +1,24 @@
+Topics Dicussed:
+Weight - 200 pound max weight for the dry system, target of 120 lbs
+Size - Pickup truck portable
+Filtration - House water fitler?
+Flow Rate - 10 L/min
+Pressure - 60 to 80 PSI
+Lathe RPM 90 - 2,800
+
+-An electrolyte tank for travel and demonstration purposes between 40 and 90 liters (max 200 lbs)
+Voltage and current - can be supplied by TURBOCAM infrastructure or individual supply
+Even electrolyte can be supplied by TURBOCAM, for non-demo uses
+
+Priorities:
+-Enclosure design
+-Software design
+-Find a suitable cart
+-Figure out pump - flowrates, pressures, regulation, plumbing, electrolyte storage
+
+Future Goals:
+-Brush
+-Seals
+
+Things to Wait on:
+Power supply 

@@ -1,0 +1,28 @@
+ // Step in the default direction the duration of TESTSTEP.
+    stepper1.setDirection(1); //0 is Y+ (tool moving away from the spindle)
+    stepper2.setDirection(1); //0 is Y+ (tool moving away from the spindle)
+    for (unsigned int x = 0; x < TESTSTEP; x++)
+    {
+      step1();
+      step2();
+     
+      // The delay here controls the stepper motor's speed.  You can
+      // increase the delay to make the stepper motor go slower.  If
+      // you decrease the delay, the stepper motor will go fast, but
+      // there is a limit to how fast it can go before it starts
+      // missing steps.
+      delayMicroseconds(2500); //2500 seems to work on the ECL's NEMA 23s while half stepping
+    }
+  
+
+    stepper2.setDirection(1); //0 is Y+ (tool moving away from the spindle)
+    for (unsigned int x = 0; x < TESTSTEP; x++)
+    {
+      step2();
+      // The delay here controls the stepper motor's speed.  You can
+      // increase the delay to make the stepper motor go slower.  If
+      // you decrease the delay, the stepper motor will go fast, but
+      // there is a limit to how fast it can go before it starts
+      // missing steps.
+      delayMicroseconds(2500); //2500 seems to work well on the ECL's NEMA 23s while half stepping
+    }

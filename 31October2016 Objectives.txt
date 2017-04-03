@@ -1,0 +1,7 @@
+Simon: Motion control - Starting 1 November 2016 finished by 15 November.
+Accurate movement commands - "move an inch" and the machine goes an inch.  Start with single axis.
+
+Carlos: EMS purchase order - pumps, major components, things such as valves and piping can be bought at hardware stores.  Check that pipes works with electrolyte.
+First draft design this weekend (5th 6th) for EMS, have Graham review design.
+
+Remarks:  Since the lathe is not yet here, design of the electrolyte containment area will be delayed.  And EMS design will take its place as a priority system.  Motion control development will begin immedietely.

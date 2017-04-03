@@ -1,0 +1,117 @@
+//Multi axis stepping for ECL
+
+#include <SPI.h>
+#include <AMIS30543.h>
+
+#define MOSI 51 //Defining the Arduino's communications to the motor controllers is on pin 51 (requires a #define!!!)
+const int CLOCK = 52; //the clock regulating communications with the motor controllers is on the ICSP bus.
+const int DIR = 46; //pin 46 is used to specify with direction the motor should step
+const int STEP = 47; //pin 47 sends the command to do steps
+const int SS_M1 = 48; //pin 48 specifies that commands are sent to the controller for motor 1
+const int SS_M2 = 49; //pin 49 specifies that the commands are sent to the controller for motor 2
+const int TESTSTEP = 400; //an integer step value for testing - should be 10 mm
+const int BUTTONPIN = 31;  //The pin connected to the start/stop button
+bool buttonState = 0; //The button starts in the "off" position, 0
+bool counter = 0;
+
+AMIS30543 stepper1; //For M1 - Y axis
+AMIS30543 stepper2; //For M2 - Z axis
+
+void setup()
+{
+  pinMode(BUTTONPIN, INPUT); //Initializing the start/stop button's pin as an input type pin
+  SPI.begin();
+  //Initializing motors - commands will be sent to any motors initialized here
+  //The init function writes the slave select pin (function input) to high and sets it as an output pin.
+  stepper1.init(SS_M1); //Initializing M1 - Y axis.
+  stepper2.init(SS_M2); //Initializing M2 - Z axis
+  
+  //Initializing control pins: STEP, DIR
+  digitalWrite(STEP, LOW);
+  pinMode(STEP, OUTPUT);
+  digitalWrite(DIR, LOW);
+  pinMode(DIR, OUTPUT);
+  
+  //Allow the AMIS-30543 and Pololu driver carrier to power up
+  delay(1);
+
+  //Initialize driver to its default settings
+  stepper1.resetSettings();
+  stepper2.resetSettings();
+
+  //Initialize the current limiter.  The NEMA 23 steppers draw 1 A per phase at 8.6 V
+  stepper1.setCurrentMilliamps(1200); //Current range 2, see page 26 in AMIS-30543 documentation
+  stepper2.setCurrentMilliamps(1200);
+  
+  //Specifying the amount of microsteps in a full step
+  stepper1.setStepMode(2); //half stepping
+  stepper2.setStepMode(2);
+  
+  //Enable the motor outputs
+  stepper1.enableDriver();
+  stepper2.enableDriver();
+}
+
+void loop()
+{
+
+ //Allowing button control of the movement - press the button for a movement check on the Y and Z axes
+ buttonState = digitalRead(BUTTONPIN);
+ if (buttonState == 1) //When the button is NOT pressed, it is in the "1" state
+ {
+   delay(1); //Standby
+ }
+ else
+ {
+  
+  // Step in the default direction the duration of TESTSTEP.
+  setDirection(0); //0 is Y+ (tool moving away from the spindle)
+  for (unsigned int x = 0; x < TESTSTEP; x++)
+  {
+    step();
+    
+    // The delay here controls the stepper motor's speed.  You can
+    // increase the delay to make the stepper motor go slower.  If
+    // you decrease the delay, the stepper motor will go fast, but
+    // there is a limit to how fast it can go before it starts
+    // missing steps.
+    delayMicroseconds(2500); //2500 seems to work on the ECL's NEMA 23s while half stepping
+  }
+  
+
+  setDirection(1); //0 is Y+ (tool moving away from the spindle)
+  for (unsigned int x = 0; x < TESTSTEP; x++)
+  {
+    step();
+    // The delay here controls the stepper motor's speed.  You can
+    // increase the delay to make the stepper motor go slower.  If
+    // you decrease the delay, the stepper motor will go fast, but
+    // there is a limit to how fast it can go before it starts
+    // missing steps.
+    delayMicroseconds(2500); //2500 seems to work on the ECL's NEMA 23s while half stepping
+  }
+ }
+}
+
+// Sends a pulse on the NXT/STEP pin to tell the driver to take
+void step()
+{
+  // The NXT/STEP minimum high pulse width is 2 microseconds.
+  //digitalWrite(SS_M1, HIGH);
+  digitalWrite(STEP, HIGH);
+  delayMicroseconds(3);
+  digitalWrite(STEP, LOW);
+  delayMicroseconds(3);
+  //digitalWrite(SS_M1, LOW);
+}
+
+// Writes a high or low value to the direction pin to specify
+// what direction to turn the motor.
+void setDirection(bool dir)
+{
+  // The NXT/STEP pin must not change for at least 0.5
+  // microseconds before and after changing the DIR pin.
+  delayMicroseconds(1);
+  digitalWrite(DIR, dir);
+  delayMicroseconds(1);
+}
